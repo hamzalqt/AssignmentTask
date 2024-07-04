@@ -23,11 +23,7 @@ class updateUser extends Controller
              $user->save();
 
              $user->roles()->sync([$request->role_id]);
-
-
              return response()->json($user);
-
-
           }
 
         }catch(\Exception $e){

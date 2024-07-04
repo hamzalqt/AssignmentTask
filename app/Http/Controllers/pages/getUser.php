@@ -12,7 +12,7 @@ class getUser extends Controller
     public function getUser($id){
 
         $user = User::with('roles')->find($id);
-       $userRoles = Role::all();
+        $userRoles = Role::all();
         if($user){
          return response()->json([
           'user' => $user,
