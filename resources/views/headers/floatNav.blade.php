@@ -60,6 +60,18 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
+                        <div class="dropdown-header d-flex align-items-center">
+                            <div class="avatar me-1">
+                                <!-- Assuming you have an avatar for the user -->
+                            </div>
+                            <div class="user-info">
+                                <h6 class="mb-0">{{ Auth::user()->name }}</h6>
+                                @foreach(Auth::user()->roles as $role)
+                                <small class="text-muted">{{ $role->name }}</small><br>
+                            @endforeach
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="dropdown-item" type="submit">
@@ -68,6 +80,7 @@
                             </button>
                         </form>
                     </div>
+
                 </li>
             </ul>
         </div>

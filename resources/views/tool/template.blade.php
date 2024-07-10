@@ -29,7 +29,7 @@
             ></button>
           </div>
           <div class="">
-            <table id="sidebar" class="dataTable">
+            <table  id="sidebar" class="dataTable" >
                 <thead>
                     <tr class="bg-gray-800  text-black">
                         <th></th>
@@ -39,7 +39,7 @@
                         <th class="px-8 py-2">Serial</th>
                     </tr>
                 </thead>
-                <tbody id="masterTable">
+                <tbody id="masterTable" >
 
                 </tbody>
             </table>
@@ -47,7 +47,6 @@
 
           </div>
         </div>
-    </div>
 
     <section id="basic-datatable" class="">
       <div class="row">
@@ -298,12 +297,12 @@ feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
 '</a>' +
 '<div class="dropdown-menu dropdown-menu-end">' +
 
-'<a href="javascript:;" class="dropdown-item delete-record" data-template-id="' + full.id + '">' +
+'<a href="javascript:;" class="dropdown-item delete-record" data-template-id="' + full.uid + '">' +
               feather.icons['trash-2'].toSvg({ class: 'font-small-4 me-50' }) +
               'Delete</a>'+
 '</div>' +
 '</div>' +
-'<a id="edit-btn"  class="item-edit" data-template-id="' + full.id + '">' +
+'<a id="edit-btn"  class="item-edit" data-template-id="' + full.uid + '">' +
   feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
 '</a>'
             );
@@ -423,6 +422,7 @@ feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
     dt_basic_table.on('click', '.item-edit', function () {
 
         var userId = $(this).data('template-id');
+
         var rowData =  findRowById(userId);
         populateEditModal(rowData);
 });
@@ -431,7 +431,7 @@ function findRowById(id) {
     var rowData = null;
     dt_basic.rows().every(function(index, element) {
         var data = this.data();
-        if (data.id === id) {
+        if (data.uid == id) {
             rowData = data;
             return false;
         }
@@ -454,7 +454,7 @@ function populateEditModal(data) {
     // Event listener for edit submit button
     $('#edit-submit-btn').on('click', function () {
         var editedData = {
-            id: data.id,
+            id: data.uid,
             type: $('#type-upd').val(),
             size: $('#size-upd').val(),
             method: $('#method-upd').val(),
@@ -499,10 +499,11 @@ function populateEditModal(data) {
             method: response.method,
             size: response.size,
         }).draw();
+                    $('.item-edit').modal('hide');
+
     } else {
         console.error('Row with id ' + response.id + ' not found in DataTable.');
     }
-            $('.item-edit').modal('hide');
         },
         error: function (xhr, status, error) {
             console.error('Error updating user:', error);
@@ -772,6 +773,7 @@ error: function(xhr, status, error) {
     #sidebarTable {
             width: 100%;
             border-collapse: collapse;
+
         }
 
         #sidebarTable th,
@@ -819,6 +821,7 @@ error: function(xhr, status, error) {
             width: 100%;
             border-collapse: collapse;
             border-spacing: 0;
+
         }
 
         #sidebarTable.dataTable thead th {
@@ -857,6 +860,9 @@ error: function(xhr, status, error) {
         }
 
 
+/* html{
+zoom: 70%;
+} */
 
     </style>
 

@@ -44,4 +44,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
+
+
 }

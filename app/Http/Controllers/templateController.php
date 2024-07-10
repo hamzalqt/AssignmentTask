@@ -107,18 +107,17 @@ class TemplateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  $uid)
     {
 
-        $template = template::find($id);
-
-        $template->type=$request->type;
+        $template = template::where('uid',$uid)->first();
+        if(!empty($template)){
+         $template->type=$request->type;
         $template->size=$request->size;
         $template->method=$request->method;
         $template->serial=$request->serial;
         $template->save();
 
-        if(!empty($template)){
          return response()->json($template);
         }else{
          return response()->json('template not found',404);
@@ -128,10 +127,10 @@ class TemplateController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($uid)
     {
-        $templates = template::findOrFail($id);
-        $templates->delete();
+        $template = template::where('uid',$uid)->first();
+        $template->delete();
 
         return response()->json('sucessfully Deleted');
     }
