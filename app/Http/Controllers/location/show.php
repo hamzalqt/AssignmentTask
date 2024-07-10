@@ -13,11 +13,9 @@ class show extends Controller
 
         $hq=headquarter::all();
 
-        $loc=location::with('headQuarter')->get();
 
         return view('Locations.show',[
             'headquarters'=>$hq,
-            'locations'=>$loc,
         ]);
 
     }

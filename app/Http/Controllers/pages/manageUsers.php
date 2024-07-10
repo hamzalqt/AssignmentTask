@@ -12,12 +12,11 @@ class manageUsers extends Controller
 {
     public function index(){
 
-        $fetchUsers = User::whereNotIn('id', [Auth::id()])->with('roles')->get();
         $userRoles=Role::all();
             // dd($fetchUsers);
        return view('Pages.manage-users',[
-        'users'=>$fetchUsers,
         'roles'=>$userRoles,
+
        ]);
 
     }

@@ -14,7 +14,7 @@ class location extends Model
         'address',
         'contact',
         'status',
-        'headQuarter_id'
+        'headquarter_id'
     ];
 
 

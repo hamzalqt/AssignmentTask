@@ -22,7 +22,7 @@ class login extends Controller
 
         if(Auth::attempt($credentials)){
             if (Auth::user()->hasRole('super-admin')) {
-                return redirect()->intended('/welcome');
+                return redirect()->intended('/manage/users');
             }else{
                 return redirect()->intended('/401');
             }
