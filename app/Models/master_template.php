@@ -15,13 +15,18 @@ class master_template extends Model
         'method',
         'master',
         'changed',
-         'uid',
+        'uid',
+        'headquarter_id'
     ];
 
 
     public function templates(){
         return $this->hasMany(template::class,'master','id');
     }
+
+    public function headquarter(){
+        return $this->belongsTo(headquarter::class,'headquarter_id','id');
+     }
 
     protected static function boot()
     {

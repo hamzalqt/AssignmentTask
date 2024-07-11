@@ -30,6 +30,7 @@
                   <th>Type</th>
                   <th>Method</th>
                   <th>Size</th>
+                  <th>headquarter</th>
                   <th>Serial</th>
           </tr>
               </thead>
@@ -227,6 +228,7 @@ $(function () {
         { data: 'type' },
         { data: 'method' },
         { data: 'size' },
+        { data: 'changed' },
         { data: 'serial' },
 
       ],
@@ -280,31 +282,31 @@ feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
               extend: 'print',
               text: feather.icons['printer'].toSvg({ class: 'font-small-4 me-50' }) + 'Print',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3] }
+              exportOptions: { columns: [0,1, 2, 3,4] }
             },
             {
               extend: 'csv',
               text: feather.icons['file-text'].toSvg({ class: 'font-small-4 me-50' }) + 'Csv',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3] }
+              exportOptions: { columns: [0,1, 2, 3,4] }
             },
             {
               extend: 'excel',
               text: feather.icons['file'].toSvg({ class: 'font-small-4 me-50' }) + 'Excel',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3] }
+              exportOptions: { columns: [0,1, 2, 3,4] }
             },
             {
               extend: 'pdf',
               text: feather.icons['clipboard'].toSvg({ class: 'font-small-4 me-50' }) + 'Pdf',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3] }
+              exportOptions: { columns: [0,1, 2, 3,4] }
             },
             {
               extend: 'copy',
               text: feather.icons['copy'].toSvg({ class: 'font-small-4 me-50' }) + 'Copy',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3] }
+              exportOptions: { columns: [0,1, 2, 3,4] }
             }
           ],
 
@@ -316,19 +318,19 @@ feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
             }, 50);
           }
         },
-        {
-          text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Add New Record',
-          className: 'create-new btn btn-primary ms-1',
-          attr: {
-            'data-bs-toggle': 'modal',
-            'data-bs-target': '#modals-slide-in',
-            'data-bs-backdrop':false
+        // {
+        //   text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Add New Template',
+        //   className: 'create-new btn btn-primary ms-1',
+        //   attr: {
+        //     'data-bs-toggle': 'modal',
+        //     'data-bs-target': '#modals-slide-in',
+        //     'data-bs-backdrop':false
 
-          },
-          init: function (api, node, config) {
-            $(node).removeClass('btn-secondary');
-          }
-        },
+        //   },
+        //   init: function (api, node, config) {
+        //     $(node).removeClass('btn-secondary');
+        //   }
+        // },
 
         {
     text: feather.icons['filter'].toSvg({ class: 'me-50 font-small-4' }) + 'Filter Type:',
@@ -434,11 +436,13 @@ function populateEditModal(data) {
                 serial: response.serial,
                 method: response.method,
                 size: response.size,
+                changed: response.changed,
+
             };
 
 
             var row = dt_basic.row(function (idx, data, node) {
-        return data.id === response.id;
+        return data.id == response.id;
     });
 
     if (row.index() !== -1) {
@@ -449,6 +453,7 @@ function populateEditModal(data) {
             serial: response.serial,
             method: response.method,
             size: response.size,
+            changed:response.changed,
         }).draw();
     } else {
         console.error('Row with id ' + response.id + ' not found in DataTable.');
@@ -603,6 +608,6 @@ function populateEditModal(data) {
 
 <style>
    #basic-datatable{
-    zoom: 80%;
+    zoom: 90%;
 }
 </style>

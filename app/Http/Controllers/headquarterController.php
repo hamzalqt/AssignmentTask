@@ -17,9 +17,7 @@ class HeadquarterController extends Controller
        $headquarters = headquarter::all();
        return response()->json($headquarters);
          }else{
-
             return view('headquarter.show');
-
         }
 
 

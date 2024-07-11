@@ -45,7 +45,7 @@
           <form class="add-new-record modal-content pt-0" id="add-new-record-form">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
             <div class="modal-header mb-1">
-              <h5 class="modal-title" id="exampleModalLabel">New Headquarter</h5>
+              <h5 class="modal-title" id="exampleModalLabel">New Location</h5>
             </div>
             <div class="modal-body flex-grow-1">
               <div class="mb-1">
@@ -342,7 +342,7 @@ $(function () {
           }
         },
         {
-          text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Add New Record',
+          text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Add New Location',
           className: 'create-new btn btn-primary',
           attr: {
             'data-bs-toggle': 'modal',
@@ -603,6 +603,6 @@ function populateEditModal(data) {
 
 <style>
     #basic-datatable{
-    zoom: 80%;
+    zoom: 90%;
 }
 </style>

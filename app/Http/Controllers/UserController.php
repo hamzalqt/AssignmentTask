@@ -17,7 +17,7 @@ class UserController extends Controller
        $user = User::with('roles')->get();
        return response()->json($user);
        }else{
-        $userRoles=Role::all();
+        $userRoles=Role::where('id','!=',2)->get();
         return view('Pages.manage-users',[
             'roles'=>$userRoles,
       ]);

@@ -43,7 +43,7 @@
           <form class="add-new-record modal-content pt-0" id="add-new-record-form">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
             <div class="modal-header mb-1">
-              <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
+              <h5 class="modal-title" id="exampleModalLabel">New Headquarter</h5>
             </div>
             <div class="modal-body flex-grow-1">
               <div class="mb-1">
@@ -256,13 +256,13 @@ $(function () {
         feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
     '</a>' +
     '<div class="dropdown-menu dropdown-menu-end">' +
-        '<a href="javascript:;" class="dropdown-item delete-record" data-user-id="' + full.id + '">' +
+        '<a href="javascript:;" class="dropdown-item delete-record" data-headquarter-id="' + full.id + '">' +
             feather.icons['trash-2'].toSvg({ class: 'font-small-4 me-50' }) +
             'Delete' +
         '</a>' +
     '</div>' +
 '</div>' +
-'<a id="edit-btn" class="pe-1 item-edit " data-user-id="' + full.id + '">' +
+'<a id="edit-btn" class="pe-1 item-edit " data-headquarter-id="' + full.id + '">' +
     feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
 '</a>' +
 '<a href="/templates/' + full.id + '/headquarter" class="item-edit">' +
@@ -322,7 +322,7 @@ $(function () {
           }
         },
         {
-          text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Add New Record',
+          text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Add New Headquarter',
           className: 'create-new btn btn-primary',
           attr: {
             'data-bs-toggle': 'modal',
@@ -361,7 +361,7 @@ $(function () {
 
 dt_basic_table.on('click', '.item-edit', function () {
 
-var userId = $(this).data('template-id');
+var userId = $(this).data('headquarter-id');
 var rowData =  findRowById(userId);
 populateEditModal(rowData);
 });
@@ -592,6 +592,6 @@ function populateEditModal(data) {
 
 <style>
     #basic-datatable{
-    zoom: 80%;
+    zoom: 90%;
 }
 </style>

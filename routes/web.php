@@ -72,7 +72,7 @@ Route::get('/headQuarter',[show::class,'show'])->name('headQuarter');
 // Route::put('headQuarter/update',[updateHq::class,'update']);
 // Route::delete('headQuarter/delete/{id}',[delete::class,'delete']);
 // Route::put('/template/to/master/{id}',[masterController::class,'toggleToMaster']);
-Route::put('/master/to/template/{id}',[masterController::class,'toggleToTemplate']);
+Route::put('/master/to/template/',[masterController::class,'toggleToTemplate']);
 
 
 Route::get('get/location',[LocationShow::class,'show'])->name('locations');

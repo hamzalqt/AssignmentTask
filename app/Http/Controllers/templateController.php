@@ -64,7 +64,8 @@ class TemplateController extends Controller
                   'size'=>$request->size,
                   'method'=>$request->method,
                   'serial'=>$request->serial,
-                  'master'=>$request->headquarter_id,
+                  'master'=>$request->master,
+                  'headquarter_id'=>$request->headquarter_id,
                   'uid'=>$temp->uid,
               ]);
 

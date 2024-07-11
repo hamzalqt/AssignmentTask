@@ -42,10 +42,11 @@
                 <tbody id="masterTable" >
 
                 </tbody>
+
             </table>
-
-
           </div>
+          <button id="checkbox-btn-sub" type="button" class="btn btn-primary mx-3 mt-3" id="saveButton">Save</button>
+
         </div>
 
     <section id="basic-datatable" style="margin-right:30px; margin-left:20px;">
@@ -260,14 +261,7 @@ $(function () {
         dataSrc: '' // Assuming your API directly returns the array of users
       },
       columns: [
-//         {
-//     data: null,
-//     render: function (data, type, full, meta) {
-//       return '<div class="form-check"> <input class="form-check-input dt-checkboxes" type="checkbox" value="' + full.id + '" id="checkbox' + full.id + '" /><label class="form-check-label" for="checkbox' + full.id + '"></label></div>';
-//     },
-//     orderable: false,
-//     className: 'dt-body-center'
-//   },
+
         { data: 'id' },
         { data: 'type' },
         { data: 'size' },
@@ -323,31 +317,31 @@ feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
               extend: 'print',
               text: feather.icons['printer'].toSvg({ class: 'font-small-4 me-50' }) + 'Print',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3] }
+              exportOptions: { columns: [0,1, 2, 3,4] }
             },
             {
               extend: 'csv',
               text: feather.icons['file-text'].toSvg({ class: 'font-small-4 me-50' }) + 'Csv',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3] }
+              exportOptions: { columns: [0,1, 2, 3,4] }
             },
             {
               extend: 'excel',
               text: feather.icons['file'].toSvg({ class: 'font-small-4 me-50' }) + 'Excel',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3] }
+              exportOptions: { columns: [0,1, 2, 3,4] }
             },
             {
               extend: 'pdf',
               text: feather.icons['clipboard'].toSvg({ class: 'font-small-4 me-50' }) + 'Pdf',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3] }
+              exportOptions: { columns: [0,1, 2, 3,4] }
             },
             {
               extend: 'copy',
               text: feather.icons['copy'].toSvg({ class: 'font-small-4 me-50' }) + 'Copy',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3] }
+              exportOptions: { columns: [0,1, 2, 3,4] }
             }
           ],
           init: function (api, node, config) {
@@ -359,7 +353,7 @@ feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
           }
         },
         {
-        text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Add New Record',
+        text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Add New Template',
         className: 'create-new btn btn-primary',
         attr: {
             'data-bs-toggle': 'modal',
@@ -637,7 +631,8 @@ function getMasterTemplate(){
                 });
             }
                             var checkboxOrTick = hasCheckedTemplate ?
-                '<svg class="tick-svg size-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" fill="currentColor" /></svg>' :
+                            '<input type="checkbox" class="item-checkbox" data-id="' + item.id + '" checked>'
+                            :
                 '<input type="checkbox" class="item-checkbox" data-id="' + item.id + '">';
 
 
@@ -653,13 +648,47 @@ function getMasterTemplate(){
               tableBody.append(row);
                     });
 
+
+
+
+
+
+
+
+
+
+// master template checkbox action
+
+var checkedIds = [];
+var uncheckedIds = [];
+
     tableBody.find('.item-checkbox').change(function() {
-            if ($(this).prop('checked')) {
 
                 var id = $(this).data('id');
 
 var isChecked = $(this).prop('checked');
 var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+if (isChecked) {
+        // Remove from uncheckedIds if already present
+        uncheckedIds = uncheckedIds.filter(function(uncheckedId) {
+            return uncheckedId !== id;
+        });
+        // Add to checkedIds if not already present
+        if (checkedIds.indexOf(id) === -1) {
+            checkedIds.push(id);
+
+        }
+    } else {
+        // Remove from checkedIds if already present
+        checkedIds = checkedIds.filter(function(checkedId) {
+            return checkedId !== id;
+        });
+        // Add to uncheckedIds if not already present
+        if (uncheckedIds.indexOf(id) === -1) {
+            uncheckedIds.push(id);
+        }
+    }
 
 function getIdFromUrl() {
 var url = window.location.href;
@@ -669,36 +698,70 @@ var id = params[params.length - 2];
 return id;
 }
 var headquarter_id = getIdFromUrl();
-
+$('#checkbox-btn-sub').click(function(){
 $.ajax({
-url: '/master/to/template/' + id,
+url: '/master/to/template/',
 method: 'PUT',
+
 headers: {
  'X-CSRF-TOKEN': csrfToken
        },
 data: {
      status: 'checked',
      'headquarter_id':headquarter_id,
+     'checked':checkedIds,
+     'unchecked':uncheckedIds,
 
  },
 success: function(response) {
 getMasterTemplate();
-         var newRowData = {
-                id: response.id,
-                type: response.type,
-                serial: response.serial,
-                method: response.method,
-                size: response.size,
+if (response.added && response.added.length > 0) {
+        response.added.forEach(function(item) {
+            var newRowData = {
+                id: item.id,
+                type: item.type,
+                serial: item.serial,
+                method: item.method,
+                size: item.size,
             };
-
+            // Add new row to DataTable
             dt_basic.row.add(newRowData).draw();
+        });
+    }
+
+
+    if (response.deleted && response.deleted.length > 0) {
+        response.deleted.forEach(function(item) {
+            // Find row index based on item.id
+            var rowIndex = dt_basic.row(function(index, data) {
+                return data.id == item.id;
+            }).index();
+
+            if (rowIndex !== undefined && rowIndex !== null && rowIndex >= 0) {
+                // Remove the row from DataTable
+                dt_basic.row(rowIndex).remove().draw();
+            } else {
+                console.warn('Row with id ' + item.id + ' not found in DataTable.');
+            }
+        });
+    }
+
+
+
+
+
+
 },
 error: function(xhr, status, error) {
     console.error('API call error:', error);
 }
 });
 
-            }
+
+});
+
+
+
 
         });
 
@@ -773,12 +836,10 @@ error: function(xhr, status, error) {
 
 
 #basic-datatable{
-    zoom: 80%;
+    zoom: 90%;
 }
 
-#offcanvasEnd{
 
-}
 
     </style>
 

@@ -36,7 +36,7 @@
           <form class="add-new-record modal-content pt-0" id="add-new-record-form">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
             <div class="modal-header mb-1">
-              <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
+              <h5 class="modal-title" id="exampleModalLabel">New User</h5>
             </div>
             <div class="modal-body flex-grow-1">
               <div class="mb-1">
@@ -80,7 +80,7 @@
                   aria-label="Select Option"
                 >
                   <option value="" disabled selected>Select Role</option>
-                  <option value="option1">None</option>
+                  {{-- <option value="option1">None</option> --}}
            @foreach ($roles  as $role )
            <option value="{{ $role->id }}">{{ $role->name }}</option>
                           @endforeach
@@ -107,7 +107,7 @@
         <form class="edit-record modal-content pt-0" id="edit-record-form">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
             <div class="modal-header mb-1">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Record</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
             </div>
             <div class="modal-body flex-grow-1">
                 <div class="mb-1 hidden">
@@ -322,7 +322,7 @@ $(function () {
           }
         },
         {
-          text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Add New Record',
+          text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Add New User',
           className: 'create-new btn btn-primary',
           attr: {
             'data-bs-toggle': 'modal',
@@ -575,6 +575,6 @@ function populateEditModal(data) {
 
 <style>
     #basic-datatable{
-    zoom: 80%;
+    zoom: 90%;
 }
 </style>
