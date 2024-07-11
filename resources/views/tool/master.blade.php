@@ -18,7 +18,7 @@
 
 <body  class="horizontal-layout horizontal-menu  footer-static" data-open="hover" data-menu="horizontal-menu" data-col="content-left-sidebar">
 
-    <section id="basic-datatable" class="">
+    <section id="basic-datatable" class="" style="margin-right:30px; margin-left:20px;">
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -247,17 +247,17 @@ $(function () {
             return (
                 '<div class="d-inline-flex">' +
 
-'<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown">' +
+'<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown" >' +
 feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
 '</a>' +
 '<div class="dropdown-menu dropdown-menu-end">' +
 
-'<a href="javascript:;" class="dropdown-item delete-record" data-location-id="' + full.id + '">' +
+'<a href="javascript:;" class="dropdown-item delete-record" data-template-id="' + full.uid + '">' +
               feather.icons['trash-2'].toSvg({ class: 'font-small-4 me-50' }) +
               'Delete</a>'+
 '</div>' +
 '</div>' +
-'<a id="edit-btn"  class="item-edit" data-template-id="' + full.id + '">' +
+'<a id="edit-btn"  class="item-edit"  data-template-id="' + full.uid + '">' +
   feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
 '</a>'
 
@@ -280,31 +280,31 @@ feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
               extend: 'print',
               text: feather.icons['printer'].toSvg({ class: 'font-small-4 me-50' }) + 'Print',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3, 4] }
+              exportOptions: { columns: [0,1, 2, 3] }
             },
             {
               extend: 'csv',
               text: feather.icons['file-text'].toSvg({ class: 'font-small-4 me-50' }) + 'Csv',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3, 4] }
+              exportOptions: { columns: [0,1, 2, 3] }
             },
             {
               extend: 'excel',
               text: feather.icons['file'].toSvg({ class: 'font-small-4 me-50' }) + 'Excel',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3, 4] }
+              exportOptions: { columns: [0,1, 2, 3] }
             },
             {
               extend: 'pdf',
               text: feather.icons['clipboard'].toSvg({ class: 'font-small-4 me-50' }) + 'Pdf',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3, 4] }
+              exportOptions: { columns: [0,1, 2, 3] }
             },
             {
               extend: 'copy',
               text: feather.icons['copy'].toSvg({ class: 'font-small-4 me-50' }) + 'Copy',
               className: 'dropdown-item',
-              exportOptions: { columns: [0,1, 2, 3, 4] }
+              exportOptions: { columns: [0,1, 2, 3] }
             }
           ],
 
@@ -321,7 +321,9 @@ feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
           className: 'create-new btn btn-primary ms-1',
           attr: {
             'data-bs-toggle': 'modal',
-            'data-bs-target': '#modals-slide-in'
+            'data-bs-target': '#modals-slide-in',
+            'data-bs-backdrop':false
+
           },
           init: function (api, node, config) {
             $(node).removeClass('btn-secondary');
@@ -339,6 +341,9 @@ feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
             .on('change', function () {
                 var val = $.fn.dataTable.util.escapeRegex($(this).val());
                 dt.column(1).search(val ? '^' + val + '$' : '', true, false).draw();
+
+                // Update the selected option in the dropdown
+                $(this).val(val); // Set the dropdown value to the selected option
             });
 
         // Append select to button node and focus
@@ -346,6 +351,7 @@ feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
         select.focus();
     }
 }
+
 
 
       ]
@@ -377,7 +383,7 @@ function findRowById(id) {
 var rowData = null;
 dt_basic.rows().every(function(index, element) {
 var data = this.data();
-if (data.id === id) {
+if (data.uid == id) {
     rowData = data;
     return false;
 }
@@ -400,7 +406,7 @@ function populateEditModal(data) {
     // Event listener for edit submit button
     $('#edit-submit-btn').on('click', function () {
         var editedData = {
-            id: data.id,
+            id: data.uid,
             type: $('#type-upd').val(),
             size: $('#size-upd').val(),
             method: $('#method-upd').val(),
@@ -421,8 +427,7 @@ function populateEditModal(data) {
         success: function (response) {
             console.log('User updated successfully:', response);
 
-            // Assuming 'dt_basic' is your DataTable instance
-            // Update the DataTable row with new data
+
             var newRowData = {
                 id: response.id,
                 type: response.type,
@@ -596,3 +601,8 @@ function populateEditModal(data) {
 
 
 
+<style>
+   #basic-datatable{
+    zoom: 80%;
+}
+</style>

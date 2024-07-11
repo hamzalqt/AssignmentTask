@@ -9,10 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @include('Pages.extras.style')
 </head>
-<body  class="horizontal-layout horizontal-menu content-left-sidebar navbar-floating footer-static" data-open="hover" data-menu="horizontal-menu" data-col="content-left-sidebar">
+<body style="overflow: none;"  class="horizontal-layout horizontal-menu content-left-sidebar navbar-floating footer-static" data-open="hover" data-menu="horizontal-menu" data-col="content-left-sidebar">
     @include('headers.floatNav')
-<hr style="padding: 2%">
-    <section id="basic-datatable" class="">
+<hr style="padding-bottom: 4%">
+    <section id="basic-datatable" style="margin-right:30px; margin-left:20px; " class="">
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -565,17 +565,16 @@ function populateEditModal(data) {
     $('.archive-record').on('click', function () {
       dt_basic.rows('.selected').remove().draw(false);
     });
-    $('div.head-label').html('<h6 class="mb-0"> User Managment</h6>');
+    $('div.head-label').html('<h6 class="mb-0">User Managment</h6>');
 
   }
 });
 </script>
 
+
+
 <style>
-    /* html{
-        zoom: 70%;
-    }, */
-
+    #basic-datatable{
+    zoom: 80%;
+}
 </style>
-
-

@@ -18,7 +18,7 @@
 
 <body  class="horizontal-layout horizontal-menu content-left-sidebar navbar-floating footer-static" data-open="hover" data-menu="horizontal-menu" data-col="content-left-sidebar">
 
-    <section id="basic-datatable" class="">
+    <section id="basic-datatable" class="" style="margin-right:30px; margin-left:20px;">
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -265,7 +265,7 @@ $(function () {
 '<a id="edit-btn" class="pe-1 item-edit " data-user-id="' + full.id + '">' +
     feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
 '</a>' +
-'<a href="/templates/' + full.id + '/get" class="item-edit">' +
+'<a href="/templates/' + full.id + '/headquarter" class="item-edit">' +
     feather.icons['tool'].toSvg({ class: 'font-small-4' }) +
 '</a>'
             );
@@ -590,3 +590,8 @@ function populateEditModal(data) {
 
 
 
+<style>
+    #basic-datatable{
+    zoom: 80%;
+}
+</style>
