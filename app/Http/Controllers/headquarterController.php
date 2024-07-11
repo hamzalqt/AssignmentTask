@@ -18,7 +18,7 @@ class HeadquarterController extends Controller
        return response()->json($headquarters);
          }else{
 
-            return view('headQuarter.show');
+            return view('headquarter.show');
 
         }
 

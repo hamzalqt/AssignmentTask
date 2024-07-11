@@ -53,7 +53,7 @@ Route::get('/mastertemplates', function () {
     return view('tool.master');
 })->name('master');
 
-Route::get('/templates/{id}/get',[index::class,'redirect'])->name('template');
+Route::get('/templates/{id}/headquarter',[index::class,'redirect'])->name('template');
 
 Route::post('/admin/login',[login::class,'login'])->name('adminLogin');
 Route::post('/super-admin/login',[SuperAdminLogin::class,'login'])->name('super-adminLogin');

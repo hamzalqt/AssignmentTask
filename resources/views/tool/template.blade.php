@@ -16,7 +16,7 @@
 @include('headers.floatNav')
 <hr style="padding: 2%">
 
-<body  class="horizontal-layout horizontal-menu content-left-sidebar navbar-floating footer-static" data-open="hover" data-menu="horizontal-menu" data-col="content-left-sidebar">
+<body  class="horizontal-layout horizontal-menu content-left-sidebar navbar-floating footer-static" data-open="" data-menu="horizontal-menu" data-col="content-left-sidebar">
 
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEnd" aria-labelledby="offcanvasEndLabel">
           <div class="offcanvas-header">
@@ -28,7 +28,7 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="">
+          <div class="sidebar-xl">
             <table  id="sidebar" class="dataTable" >
                 <thead>
                     <tr class="bg-gray-800  text-black">
@@ -48,7 +48,7 @@
           </div>
         </div>
 
-    <section id="basic-datatable" class="">
+    <section id="basic-datatable" style="margin-right:30px; margin-left:20px;">
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -770,99 +770,15 @@ error: function(xhr, status, error) {
 
 
 <style>
-    #sidebarTable {
-            width: 100%;
-            border-collapse: collapse;
-
-        }
-
-        #sidebarTable th,
-        td {
-            padding: 8px 12px;
-        }
-
-        #sidebarTable th {
-            background-color: #f4f4f4;
-        }
-
-        .type-tag {
-            display: inline-block;
-            padding: 4px 8px;
-            margin-right: 4px;
-            color: white;
-            border-radius: 4px;
-        }
-
-        .type-single {
-            background-color: #3498db;
-        }
-
-        .type-multi {
-            background-color: #e74c3c;
-        }
 
 
-        /* General Styles */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f3f4f6;
-            color: #374151;
-        }
+#basic-datatable{
+    zoom: 80%;
+}
 
-        /* .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        } */
+#offcanvasEnd{
 
-
-
-        /* DataTable Styles */
-        #sidebarTable.dataTable {
-            width: 100%;
-            border-collapse: collapse;
-            border-spacing: 0;
-
-        }
-
-        #sidebarTable.dataTable thead th {
-            background-color: #1a202c;
-            color: #ffffff;
-            font-weight: bold;
-            text-align: left;
-            padding: 1rem;
-            border-bottom: 2px solid #cbd5e0;
-        }
-
-        #sidebarTable.dataTable tbody td {
-            padding: 1rem;
-            border-bottom: 1px solid #cbd5e0;
-        }
-
-
-
-
-
-
-        /* Sidebar Styles */
-        #sidebar {
-            /* position: fixed; */
-            top: 0;
-            right: 0;
-            /* width: 180%; */
-            /* Change to width: 100% for fullscreen sidebar */
-            height: 100%;
-            background-color: #f3f4f6;
-            overflow-x: hidden;
-            transition: width 0.5s ease;
-            /* z-index: 999; */
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-
-        }
-
-
-/* html{
-zoom: 70%;
-} */
+}
 
     </style>
 

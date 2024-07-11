@@ -77,11 +77,11 @@ class MasterTemplateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $uid)
     {
 
 
-        $template = master_template::find($id);
+        $template = master_template::where('uid',$uid)->first();
 
         $template->type=$request->type;
         $template->size=$request->size;
@@ -100,9 +100,9 @@ class MasterTemplateController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($uid)
     {
-        $template = master_template::find($id);
+        $template = master_template::where('uid',$uid)->first();
 
         if($template){
          $template->delete();
